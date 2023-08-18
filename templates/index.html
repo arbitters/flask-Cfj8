@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="compile.css">
+    <title>Document</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f0a28bfe6.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+
+      }
+
+    body {
+      background: #000000
+    }
+
+    header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px;
+      background-image: linear-gradient(to right, #000000, #ea0000 130%);
+    }
+
+
+    .logo {
+      font-size: 30px;
+      font-weight: 600;
+      color: rgb(255, 252, 252);
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+
+
+    .card-image {
+        display: block;
+        min-height: 20rem; /* layout hack */
+        background: #000000 center center no-repeat;
+        background-size: cover;
+        filter: blur(3px); /* blur the lowres image */
+    }
+
+    .card-image > img {
+        display: block;
+        width: 100%;
+        opacity: 0; /* visually hide the img element */
+    }
+
+    .card-image.is-loaded {
+        filter: none; /* remove the blur on fullres image */
+        transition: filter 1s;
+    }
+
+
+    .card-list {
+        display: block;
+        margin-top: 200px;
+        margin-bottom: 200px;
+        padding: 0;
+        font-size: 0;
+        text-align: center;
+        list-style: none;
+    }
+
+    .card {
+        display: inline-block;
+        background-color: #323131;
+        width: 90%;
+        max-width: 20rem;
+        margin: 2rem;
+        font-size: 0.8rem;
+        text-decoration: none;
+        overflow: hidden;
+        box-shadow: 0 0 3rem -1rem rgba(214, 9, 9, 0.5);
+        transition: transform 0.1s ease-in-out, box-shadow 0.1s;
+    }
+
+    .card:nth-child(1):hover{
+        transform: translateY(-0.5rem) scale(1.0125);
+        box-shadow: 0 0.5em 3rem -1rem rgb(255, 255, 255);
+    }
+
+    .card:nth-child(2):hover{
+        transform: translateY(-0.5rem) scale(1.0125);
+        box-shadow: 0 0.5em 3rem -1rem rgb(255, 255, 255);
+    }
+
+    .card:nth-child(3):hover img {
+        cursor: not-allowed;
+    }
+
+
+    .card:nth-child(3):hover a {
+        cursor: not-allowed;
+    }
+
+    .card-description {
+        display: block;
+        padding: 1em 0.5em;
+        color: white;
+        text-decoration: none;
+    }
+
+    .card-description > h2 {
+        margin: 0 0 0.5em;
+    }
+
+    .card-description > p {
+        margin: 0;
+    }
+
+    </style>
+<body>
+
+
+<header>
+    <a href="#" class="logo">ARBITERS</a>
+</header>
+
+<ul class="card-list">
+
+    <li class="card">
+        <a class="card-image" href=https://matches.arbiters.io/leaguePage" target="_blank" style="background-image: url(/static/images/1024x576.jpeg);" data-image-full="/static/images/1024x576.jpeg">
+            <img/>
+        </a>
+        <a class="card-description" href="https://matches.arbiters.io/leaguePage" target="_blank">
+            <h2>LoL</h2>
+
+        </a>
+    </li>
+
+    <li class="card">
+        <a class="card-image" href="https://matches.arbiters.io/counterPage" target="_blank" style="background-image: url(/static/images/counter-strike-contra-csgo-wallpaper-preview.jpg);" data-image-full="/static/images/counter-strike-contra-csgo-wallpaper-preview.jpg">
+            <img/>
+        </a>
+        <a class="card-description" href="https://matches.arbiters.io/counterPage" target="_blank">
+            <h2>let's go</h2>
+
+        </a>
+    </li>
+
+    <li class="card">
+        <a class="card-image" href="#" style="background-image: url(/static/images/valorant.png);" data-image-full="/static/images/valorant.png">
+            <img/>
+        </a>
+        <a class="card-description" href="#">
+            <h2>Coming Soon!</h2>
+        </a>
+    </li>
+
+</ul>
+
+<script>
+
+       window.addEventListener('load', function() {
+	   setTimeout(lazyLoad, 1000);
+
+});
+
+function lazyLoad() {
+
+	var card_images = document.querySelectorAll('.card-image');
+
+	card_images.forEach(function(card_image) {
+		    var image_url = card_image.getAttribute('data-image-full');
+		    var content_image = card_image.querySelector('img');
+		    content_image.src = image_url;
+		    content_image.addEventListener('load', function() {
+			card_image.style.backgroundImage = 'url(' + image_url + ')';
+			card_image.className = card_image.className + ' is-loaded';
+		});
+	});
+}
+</script>
+</body>
+</html>

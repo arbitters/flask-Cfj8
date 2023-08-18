@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+
+     <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --thunder-duration: 10s;
+    --thunder-delay: 5s;
+  }
+
+
+html {
+    height: 100%;
+  }
+
+
+  body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: linear-gradient(245.59deg,  red 28.53%, #131313 75.52%);
+    width: 100vw;
+    height: 100vh;
+
+  }
+
+  .custom-alert-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 300px;
+}
+
+
+        .custom-alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align:center;
+        }
+
+        .alert-success {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .alert-error {
+            background-color: #FF5733;
+            color: #fff;
+        }
+
+  .login-box {
+    position: absolute;
+    margin-top:30px;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    padding: 50px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+
+  .login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+
+  .login-box .user-box {
+    position: relative;
+  }
+
+  .login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .login-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .user-dropdown {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 370px;
+    background-image: linear-gradient(to right, #000000, #ff0909 200%);
+    border: 1px solid #ff0000;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(0, 0, 0);
+  }
+
+  .user-dropdown label {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: rgb(255, 246, 246);
+  }
+
+  .user-dropdown select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #ff0909;
+  }
+
+  .user-dropdown select:focus {
+    outline: none;
+    border-color: #ff0000;
+    box-shadow: 0 0 5px rgb(253, 253, 253);
+  }
+
+  .user-dropdown option {
+    font-size: 14px;
+  }
+
+
+  .login-box .user-box input:focus ~ label,
+  .login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #ff2313;
+    font-size: 12px;
+  }
+
+  .submit {
+    position: relative;
+    margin-left: 110px;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 10px;
+    letter-spacing: 4px
+  }
+
+
+  .change-acc{
+    position: relative;
+    margin-left: 72px;
+    display: inline-block;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 60px;
+    letter-spacing: 1px
+  }
+
+
+
+  .login-box button:hover {
+    background: #ff2313;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ff2313,
+                0 0 25px #ff2313,
+                0 0 50px #ff2313,
+                0 0 100px #ff2313;
+    }
+     </style>
+<script>
+    {% if already_registered %}
+    window.addEventListener('DOMContentLoaded', function () {
+        const alertContainer = document.querySelector('.custom-alert-container');
+        const alert = document.createElement('div');
+        alert.className = 'custom-alert alert-error';
+    });
+    {% endif %}
+
+    {% if registration_successful %}
+    window.addEventListener('DOMContentLoaded', function () {
+        const alertContainer = document.querySelector('.custom-alert-container');
+        const alert = document.createElement('div');
+        alert.className = 'custom-alert alert-success';
+    });
+    {% endif %}
+</script>
+
+
+
+
+<body>
+    <div class="login-box">
+            <h2>League Form</h2>
+            <form method="POST" action="/registerLeague">
+                <div class="user-box">
+                     <input type="text" name="leagueUser" required>
+                      <label for="leagueUser">League User:</label>
+                </div>
+
+                <div class="user-box">
+                 <input type="text" name="walletAddress" required>
+                 <label for="walletAddress">Wallet Address:</label>
+                </div>
+                <div class="user-dropdown">
+                <label for="leagueServer">Server</label>
+                <select name="leagueServer">
+                    <option value="NA">NA</option>
+                    <option value="EUW">EUW</option>
+                    <option value="EUNE">EUNE</option>
+                </select>
+                </div>
+
+                <button type="submit" class="submit">Register</button>
+            </form>
+            <br>
+
+            <form method="GET" action="/leaguePage">
+               <button type="submit" class="change-acc">Choose Another Discord Account</button>
+            </form>
+    </div>
+
+         <div class="custom-alert-container">
+            {% if already_registered %}
+        <div class="custom-alert alert-error">
+            Username already registered!
+        </div>
+        {% endif %}
+        {% if registration_successful %}
+        <div class="custom-alert alert-success">
+            Registration successful!
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
