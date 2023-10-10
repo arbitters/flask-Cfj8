@@ -16,6 +16,8 @@ app.config['MYSQL_DB'] = 'railway'
 
 mysql = MySQL(app)
 
+
+
 client = APIClient(TOKEN,client_secret=CLIENT_SECRET)
 
 def create_league_table():
